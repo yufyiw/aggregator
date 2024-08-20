@@ -1,52 +1,54 @@
-name: Collect
+name: 
 on:
-  # executed once a week on Sundays at 00:00
   schedule:
-    - cron: "0 0 * * 1"
+    # 每天0:00执行
+    - cron: "0 0 * * *"
+    # 每天12:00执行
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.repository }}
+  group: {{}}
   cancel-in-progress: true
 
 env:
   # time zone
-  TZ: Asia/Shanghai
+  TZ: 
 
   # github access token
-  GIST_PAT: ${{ secrets.GIST_PAT }}
+  GIST_PAT: {{}}
 
   # github username and gist id, separated by '/'
-  GIST_LINK: ${{ secrets.GIST_LINK }}
+  GIST_LINK: {{}}
 
   # the url to the list of airports that you maintain yourself
   # each line include domain, coupon and invitation code, the domain must be included, and the latter two items are optional
-  CUSTOMIZE_LINK: ${{ secrets.CUSTOMIZE_LINK }}
+  CUSTOMIZE_LINK: {{}}
 
   # include special protocols, such as vless hysteria2 and hysteria
-  ENABLE_SPECIAL_PROTOCOLS: ${{ vars.ENABLE_SPECIAL_PROTOCOLS }}
+  ENABLE_SPECIAL_PROTOCOLS: {{}}
 
 jobs:
   process:
-    runs-on: ubuntu-latest
+    runs-on: 
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: 
+        uses: 
         with:
-          ref: main
+          ref: 
 
-      - name: Prepare
-        uses: actions/setup-python@v5
+      - name: 
+        uses: 
         with:
           python-version: "3.x"
           architecture: "x64"
           cache: "pip"
 
-      - name: Install
-        run: pip3 install -r requirements.txt
+      - name: 
+        run: 
 
-      - name: Check
+      - name: 
         run: |
           if [ -z "$GIST_PAT" ]; then
               echo "Error: environment 'GIST_PAT' cannot be empty"
